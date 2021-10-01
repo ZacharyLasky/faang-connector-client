@@ -1,2 +1,2 @@
-# faang-connector-client
-faang-connector-client
+# FAANG Connector Client
+Connect top tech jobs with top tech candidates!
