@@ -17,7 +17,6 @@ function App() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/jobs`)
       .then((res) => {
-        console.log('env!', process.env.REACT_APP_API_URL);
         setJobs(res.data);
       })
       .catch((err) => {
@@ -38,6 +37,8 @@ function App() {
     const filterJobs = jobs.filter((job) => job.company === selectedCompany);
     setFilteredJobs(filterJobs);
   }, [jobs, selectedCompany]);
+
+  console.log('env!', process.env.REACT_APP_API_URL);
 
   return (
     <AppContainer className="app">

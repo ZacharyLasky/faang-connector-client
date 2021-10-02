@@ -1,5 +1,10 @@
+# Production context: all deploys from the Production branch set in your site’s
+# Branches settings in the UI will inherit these settings.
+[context.production]
+  REACT_APP_API_URL=$REACT_APP_API_URL_PRODUCTION
+
 # Deploy Preview context:
 # All deploys generated from a pull/merge request
 # will inherit these settings.
 [context.deploy-preview.environment]
-  REACT_APP_API_URL="hi"
+  REACT_APP_API_URL=$REACT_APP_API_URL_STAGING
