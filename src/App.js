@@ -17,6 +17,7 @@ function App() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/jobs`)
       .then((res) => {
+        console.log('env!', process.env.REACT_APP_API_URL);
         setJobs(res.data);
       })
       .catch((err) => {
