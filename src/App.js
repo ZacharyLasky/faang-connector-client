@@ -34,6 +34,16 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (localStorage.getItem('existingUser')) {
+      setAbout(false);
+      return;
+    }
+
+    setAbout(true);
+    localStorage.setItem('existingUser', true);
+  }, []);
+
+  useEffect(() => {
     const filterJobs = jobs.filter((job) => job.company === selectedCompany);
     setFilteredJobs(filterJobs);
   }, [jobs, selectedCompany]);
