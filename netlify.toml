@@ -2,4 +2,4 @@
 # All deploys generated from a pull/merge request
 # will inherit these settings.
 [context.deploy-preview.environment]
-  REACT_APP_API_URL=REACT_APP_API_URL_STAGING
+  REACT_APP_API_URL="hi"
