@@ -38,6 +38,8 @@ function App() {
     setFilteredJobs(filterJobs);
   }, [jobs, selectedCompany]);
 
+  console.log('env!', process.env.REACT_APP_API_URL);
+
   return (
     <AppContainer className="app">
       <Header className="header">
