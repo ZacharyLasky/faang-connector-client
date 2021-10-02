@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/jobs')
+      .get(`${process.env.REACT_APP_API_URL}/jobs`)
       .then((res) => {
         setJobs(res.data);
       })
@@ -24,7 +24,7 @@ function App() {
       });
 
     axios
-      .get('http://localhost:4000/candidates')
+      .get(`${process.env.REACT_APP_API_URL}/candidates`)
       .then((res) => {
         setCandidates(res.data);
       })
