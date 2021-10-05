@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Candidates = ({ candidateList }) => {
+export const Candidates = ({ candidates }) => {
   return (
     <div className="candidates-container">
-      {candidateList.length === 0 ? (
-        <Candidate title={`No candidates match this job`} noCandidates>
-          No candidates match this job
+      {candidates.length === 0 ? (
+        <Candidate title={`No candidates available`} noCandidates>
+          No candidates available
         </Candidate>
       ) : (
-        candidateList?.map((candidate, i) => {
+        candidates?.map((candidate, i) => {
           return (
             <Candidate title="Candidate" key={i}>
               <CandidateName>{candidate.candidate_name}</CandidateName>

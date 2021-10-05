@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Candidates } from './Candidates';
+import { Candidates } from './candidates/Candidates';
 
 export const Jobs = ({ selectedCompany, setSelectedCompany, jobList, candidateList }) => {
   const [selectedJob, setSelectedJob] = useState({
