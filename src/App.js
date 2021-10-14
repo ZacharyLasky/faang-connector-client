@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { Home } from './components/Home';
 // import { AllJobs } from './components/jobs/AllJobs';
 // import { AllCandidates } from './components/AllCandidates';
@@ -30,6 +31,7 @@ function App() {
             <About />
           </Route>
         </Switch>
+        <Footer />
       </AppContainer>
     </Router>
   );

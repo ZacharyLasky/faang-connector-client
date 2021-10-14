@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../../styles';
 import * as api from '../../../api';
-import { Jobs } from './Jobs';
-import { JobCard } from './JobCard';
+import { AllJobs } from './jobs/AllJobs';
+import { Job } from './jobs/Job';
+import { AllCandidates } from './candidates/AllCandidates';
 
 export const Container = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState();
+  const [matchingCandidates, setMatchingCandidates] = useState([]);
+  const [selectedCandidate, setSelectedCandidate] = useState();
 
   useEffect(() => {
     api
@@ -20,27 +24,46 @@ export const Container = () => {
       });
   }, []);
 
-  const renderJob = (jobID) => {
+  const renderJob = (jobId) => {
     api
-      .getJobById(jobID)
-      .then((res) => setSelectedJob(res.data))
+      .getJobById(jobId)
+      .then((res) => setSelectedJob(res.data[0]))
       .catch((err) => console.log({ err }));
   };
 
+  const renderCandidates = (jobId) => {
+    api
+      .getCandidatesByJobId(jobId)
+      .then((res) => setMatchingCandidates(res.data))
+      .catch((err) => console.log({ err }));
+  };
+
+  const renderGoogleComponent = () => {
+    if (selectedJob && matchingCandidates.length) {
+      return <AllCandidates />;
+    }
+
+    if (selectedJob) {
+      return (
+        <Job
+          job={selectedJob}
+          setSelectedJob={() => setSelectedJob()}
+          setMatchingCandidates={(jobId) => renderCandidates(jobId)}
+        />
+      );
+    }
+
+    return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+  };
+
   return (
-    <GoogleContainer className="google-container">
-      {selectedJob ? (
-        <JobCard job={selectedJob[0]} />
-      ) : (
-        <GoogleCard className="google-card">
-          <GoogleCardText>Google</GoogleCardText>
-          <GoogleCardButton onClick={() => window.open(jobs[0]?.jobs_url)}>
-            View jobs source
-          </GoogleCardButton>
-        </GoogleCard>
-      )}
-      <Jobs jobs={jobs} setSelectedJob={(jobID) => renderJob(jobID)} />
-    </GoogleContainer>
+    <Router>
+      <Switch>
+        <GoogleContainer className="google-container">
+          <Route path="/companies/google">{renderGoogleComponent()}</Route>
+        </GoogleContainer>
+      </Switch>
+    </Router>
   );
 };
 
@@ -50,48 +73,4 @@ const GoogleContainer = styled('div')`
   align-items: center;
   flex-direction: column;
   width: inherit;
-`;
-
-const GoogleCard = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 230px;
-  background: ${colors.black};
-  width: inherit;
-`;
-
-const GoogleCardText = styled('p')`
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  line-height: 200%;
-  font-weight: 100;
-
-  @media (min-width: 900px) {
-    font-size: 2vw;
-  }
-`;
-
-const GoogleCardButton = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  border-radius: 3px;
-  color: white;
-  font-weight: 600;
-  background: ${colors.mango};
-  cursor: pointer;
-  text-align: center;
-  margin-top: 15px;
-  width: 210px;
-  &:hover {
-    background: ${colors.pumpkin};
-  }
-
-  @media (max-width: 300px) {
-    width: 70%;
-  }
 `;

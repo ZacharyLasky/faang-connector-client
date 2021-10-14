@@ -3,97 +3,92 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaFacebookF, FaApple, FaAmazon, FaGoogle } from 'react-icons/fa';
 import { SiNetflix } from 'react-icons/si';
-import { colors } from '../../styles';
+import { colors, layouts } from '../../styles';
+import { Layout } from '../global';
 
 export const Companies = () => {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <>
-      <Container className="companies-container">
-        <Company className="facebook-company-wrapper" title="Facebook">
-          <FaFacebookF className="facebook-company-icon" size="48px" alt="Facebook company icon" />
-        </Company>
-        <Company className="apple-company-wrapper" title="Apple">
-          <FaApple className="apple-company-icon" size="48px" alt="Apple company icon" />
-        </Company>
-        <Company className="amazon-company-wrapper" title="Amazon">
-          <FaAmazon className="amazon-company-icon" size="48px" alt="Amazon company icon" />
-        </Company>
-        <Company className="netflix-company-wrapper" title="Netflix">
-          <SiNetflix className="netflix-company-icon" size="48px" alt="Netflix company icon" />
-        </Company>
-        <Company
-          className="google-company-wrapper"
-          title="Google"
-          onClick={() => history.push('/companies/google')}>
-          <FaGoogle className="google-company-icon" size="48px" alt="Google company icon" />
-        </Company>
-      </Container>
-      <JobsWrapper>
-        <JobsTitle>Select a FAANG company.</JobsTitle>
-        <JobsParagraph>
-          Available jobs will appear here after selecting a FAANG company.
-        </JobsParagraph>
-      </JobsWrapper>
+      <Layout
+        topSection={{
+          heading: `What's FAANG?`,
+          button: 'Learn more',
+          buttonClick: '/companies'
+        }}
+        middleSection={{
+          heading: 'Select a FAANG company.',
+          paragraph: `Selecting a FAANG company will show you jobs sourced directly from the FAANG companies
+          website.`,
+          children: (
+            <ButtonContainer>
+              <CompanyButton className="facebook-company-wrapper" title="Facebook">
+                <FaFacebookF
+                  className="facebook-company-icon"
+                  size="24px"
+                  alt="Facebook company icon"
+                />
+              </CompanyButton>
+              <AppleButton className="apple-company-wrapper" title="Apple">
+                <FaApple className="apple-company-icon" size="24px" alt="Apple company icon" />
+              </AppleButton>
+              <AmazonButton className="amazon-company-wrapper" title="Amazon">
+                <FaAmazon className="amazon-company-icon" size="24px" alt="Amazon company icon" />
+              </AmazonButton>
+              <NetflixButton className="netflix-company-wrapper" title="Netflix">
+                <SiNetflix
+                  className="netflix-company-icon"
+                  size="24px"
+                  alt="Netflix company icon"
+                />
+              </NetflixButton>
+              <GoogleButton
+                className="google-company-wrapper"
+                title="Google"
+                onClick={() => history.push('/companies/google')}>
+                <FaGoogle className="google-company-icon" size="24px" alt="Google company icon" />
+              </GoogleButton>
+            </ButtonContainer>
+          )
+        }}
+      />
     </>
   );
 };
 
-const Container = styled('div')`
+const ButtonContainer = styled('div')`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-  height: 230px;
-  background: ${colors.black};
-  width: inherit;
 `;
 
-const Company = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-  border: 3px solid black;
-  border-radius: 5px 20px 5px;
-  margin-bottom: 10px;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
+const CompanyButton = styled(layouts.MiddleSectionButton)`
+  width: 50px;
+`;
+
+const AppleButton = styled(CompanyButton)`
   background: ${colors.mango};
   &:hover {
     background: ${colors.pumpkin};
   }
+`;
 
-  @media (max-width: 300px) {
-    width: 50px;
-    height: 50px;
+const AmazonButton = styled(CompanyButton)`
+  background: ${colors.opal};
+  &:hover {
+    background: ${colors.blueGreen};
   }
 `;
 
-const JobsWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-  max-width: 400px;
+const NetflixButton = styled(CompanyButton)`
+  background: ${colors.lightPink};
+  &:hover {
+    background: ${colors.darkPink};
+  }
 `;
 
-const JobsTitle = styled('h2')`
-  font-size: 28px;
-  text-align: center;
-  margin: 0px;
-  line-height: 200%;
-  font-weight: 600;
-`;
-
-const JobsParagraph = styled('p')`
-  font-size: 20px;
-  text-align: center;
-  margin: 0 20px;
-  line-height: 200%;
-  font-weight: 500;
+const GoogleButton = styled(CompanyButton)`
+  background: ${colors.gold};
+  &:hover {
+    background: ${colors.darkGold};
+  }
 `;
