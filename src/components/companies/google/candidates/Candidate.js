@@ -4,8 +4,6 @@ import { layouts } from '../../../../styles';
 import { Layout } from '../../../global';
 
 export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate }) => {
-  console.log(candidate);
-
   const renderPreviousJobs = () => {
     let previousJobsArray = [];
     for (let i = 0; i < candidate.candidate_previous_jobs.length; i++) {

@@ -171,7 +171,7 @@ const MiddleSectionButton = styled(TopSectionButton)`
   }
 
   @media (min-width: 800px) {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 `;
 

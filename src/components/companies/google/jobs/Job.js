@@ -4,16 +4,12 @@ import { layouts } from '../../../../styles';
 import { Layout } from '../../../global';
 
 export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) => {
-  console.log({ job });
   return (
     <Layout
       topSection={{
         heading: job.job_title,
         button: 'Return to jobs',
-        customButton: () => {
-          resetGoogleState();
-          // ref.current.scrollIntoView({ behavior: 'smooth' });
-        }
+        customButton: () => resetGoogleState()
       }}
       middleSection={{
         heading: 'Job Qualifications',
