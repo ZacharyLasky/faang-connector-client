@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { layouts } from '../styles';
-import walrusHead from '../assets/walrusHead.png';
 
 export const Footer = () => {
   const history = useHistory();
@@ -26,5 +25,9 @@ const Title = styled('h1')`
   @media (max-width: 320px) {
     font-size: 25px;
     margin-top: 0px;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 5rem;
   }
 `;

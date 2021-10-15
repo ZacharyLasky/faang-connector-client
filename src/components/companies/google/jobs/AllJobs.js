@@ -14,30 +14,15 @@ export const AllJobs = ({ jobs, setSelectedJob }) => {
       middleSection={{
         heading: 'Select a job',
         paragraph: `Selecting a job will give you more details about the role. Scroll horizontally to see all ${jobs.length} jobs.`,
-        children: (
-          <JobWrapper>
-            {jobs.map((job) => (
-              <layouts.MiddleSectionButton
-                key={job.id}
-                onClick={() => setSelectedJob(job.id)}
-                style={{ minWidth: '300px' }}>
-                {job.job_title}
-              </layouts.MiddleSectionButton>
-            ))}
-          </JobWrapper>
-        )
+        sliderContent: jobs.map((job) => (
+          <layouts.MiddleSectionButton
+            key={job.id}
+            onClick={() => setSelectedJob(job.id)}
+            style={{ minWidth: '300px' }}>
+            {job.job_title}
+          </layouts.MiddleSectionButton>
+        ))
       }}
     />
   );
 };
-
-const JobWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  max-width: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;

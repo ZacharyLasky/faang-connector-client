@@ -4,19 +4,23 @@ import { layouts } from '../../../../styles';
 import { Layout } from '../../../global';
 
 export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) => {
+  console.log({ job });
   return (
     <Layout
       topSection={{
         heading: job.job_title,
         button: 'Return to jobs',
-        customButton: () => resetGoogleState()
+        customButton: () => {
+          resetGoogleState();
+          // ref.current.scrollIntoView({ behavior: 'smooth' });
+        }
       }}
       middleSection={{
         heading: 'Job Qualifications',
         paragraph: `Scroll horizontally to see all job info`,
         children: (
           <>
-            <JobWrapper>
+            <layouts.MiddleSectionSliderWrapper>
               {job.job_qualifications.map((qualification, i) => (
                 <>
                   <JobSection key={i}>
@@ -27,7 +31,7 @@ export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) 
                   )}
                 </>
               ))}
-            </JobWrapper>
+            </layouts.MiddleSectionSliderWrapper>
             {candidates.length ? (
               <layouts.MiddleSectionButton onClick={() => setRenderCandidates(true)}>
                 {`See ${candidates.length} matching candidates`}
@@ -42,17 +46,6 @@ export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) 
   );
 };
 
-const JobWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  max-width: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 const JobSection = styled('div')`
   display: flex;
   justify-content: center;
@@ -66,6 +59,12 @@ const JobSection = styled('div')`
   padding: 0 15px;
   overflow: scroll;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  @media (min-width: 800px) {
+    min-height: 10rem;
+    min-width: 15rem;
+    font-size: 1rem;
+  }
 `;
 
 const NoCandidateButton = styled(layouts.MiddleSectionButton)`

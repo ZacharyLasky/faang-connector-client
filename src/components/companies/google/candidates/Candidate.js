@@ -38,7 +38,7 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
         paragraph: `Scroll horizontally to see all candidate info`,
         children: (
           <>
-            <CandidateWrapper>
+            <layouts.MiddleSectionSliderWrapper>
               <CandidateSection>
                 <CandidateSectionHeading>Location</CandidateSectionHeading>
                 <p>{candidate.candidate_location}</p>
@@ -67,7 +67,7 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
                   </CandidateSection>
                 );
               })}
-            </CandidateWrapper>
+            </layouts.MiddleSectionSliderWrapper>
             <layouts.MiddleSectionButton onClick={() => resetGoogleState()}>
               Return to jobs
             </layouts.MiddleSectionButton>
@@ -77,17 +77,6 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
     />
   );
 };
-
-const CandidateWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  max-width: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
 
 const CandidateSection = styled('div')`
   display: flex;
@@ -103,6 +92,12 @@ const CandidateSection = styled('div')`
   padding: 0 15px;
   overflow-y: scroll;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  @media (min-width: 800px) {
+    min-height: 10rem;
+    min-width: 15rem;
+    font-size: 1rem;
+  }
 `;
 
 const CandidateSectionHeading = styled('h3')`

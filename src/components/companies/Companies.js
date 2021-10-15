@@ -23,13 +23,13 @@ export const Companies = () => {
           website.`,
           children: (
             <ButtonContainer>
-              <CompanyButton className="facebook-company-wrapper" title="Facebook">
+              <FacebookButton className="facebook-company-wrapper" title="Facebook">
                 <FaFacebookF
                   className="facebook-company-icon"
                   size="24px"
                   alt="Facebook company icon"
                 />
-              </CompanyButton>
+              </FacebookButton>
               <AppleButton className="apple-company-wrapper" title="Apple">
                 <FaApple className="apple-company-icon" size="24px" alt="Apple company icon" />
               </AppleButton>
@@ -65,8 +65,13 @@ const CompanyButton = styled(layouts.MiddleSectionButton)`
   width: 50px;
 `;
 
+const FacebookButton = styled(CompanyButton)`
+  cursor: not-allowed;
+`;
+
 const AppleButton = styled(CompanyButton)`
   background: ${colors.mango};
+  cursor: not-allowed;
   &:hover {
     background: ${colors.pumpkin};
   }
@@ -74,6 +79,7 @@ const AppleButton = styled(CompanyButton)`
 
 const AmazonButton = styled(CompanyButton)`
   background: ${colors.opal};
+  cursor: not-allowed;
   &:hover {
     background: ${colors.blueGreen};
   }
@@ -81,6 +87,7 @@ const AmazonButton = styled(CompanyButton)`
 
 const NetflixButton = styled(CompanyButton)`
   background: ${colors.lightPink};
+  cursor: not-allowed;
   &:hover {
     background: ${colors.darkPink};
   }

@@ -19,30 +19,15 @@ export const AllCandidates = ({
       middleSection={{
         heading: 'Select a candidate',
         paragraph: `Selecting a candidate will give you more details about the person. Scroll horizontally to see all ${candidates.length} candidates.`,
-        children: (
-          <CandidateWrapper>
-            {candidates.map((candidate) => (
-              <layouts.MiddleSectionButton
-                key={candidate.id}
-                onClick={() => setSelectedCandidate(candidate)}
-                style={{ minWidth: '300px' }}>
-                {candidate.candidate_name}
-              </layouts.MiddleSectionButton>
-            ))}
-          </CandidateWrapper>
-        )
+        sliderContent: candidates.map((candidate) => (
+          <layouts.MiddleSectionButton
+            key={candidate.id}
+            onClick={() => setSelectedCandidate(candidate)}
+            style={{ minWidth: '300px' }}>
+            {candidate.candidate_name}
+          </layouts.MiddleSectionButton>
+        ))
       }}
     />
   );
 };
-
-const CandidateWrapper = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  max-width: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { layouts } from '../../styles';
 
@@ -6,7 +7,7 @@ export const Layout = ({ topSection, middleSection }) => {
   const history = useHistory();
 
   return (
-    <>
+    <LayoutContainer className="layout-container">
       {topSection && (
         <layouts.TopSection>
           <layouts.TopSectionHeading>{topSection.heading}</layouts.TopSectionHeading>
@@ -33,9 +34,28 @@ export const Layout = ({ topSection, middleSection }) => {
               {middleSection.button}
             </layouts.MiddleSectionButton>
           )}
+          {middleSection.sliderContent && (
+            <layouts.MiddleSectionSliderWrapper>
+              {middleSection.sliderContent}
+            </layouts.MiddleSectionSliderWrapper>
+          )}
           {middleSection.children && middleSection.children}
         </layouts.MiddleSection>
       )}
-    </>
+    </LayoutContainer>
   );
 };
+
+const LayoutContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const TopSection = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;

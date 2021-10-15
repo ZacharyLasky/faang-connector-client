@@ -13,7 +13,7 @@ export const Header = () => {
     return (
       <layouts.Nav className="header-menu">
         <TitleWrapper>
-          <img src={walrusHead} height="40px" alt="Walrus Head" />
+          <Logo src={walrusHead} alt="Walrus Head" />
           <Title className="app-title">FAANG Connector</Title>
         </TitleWrapper>
         <MenuIcon
@@ -30,7 +30,7 @@ export const Header = () => {
     return (
       <layouts.Nav className="heade-folded-menu">
         <TitleWrapper>
-          <img src={walrusHead} height="40px" alt="Walrus Head" />
+          <Logo src={walrusHead} alt="Walrus Head" />
           <layouts.NavButton onClick={() => history.push('/about')}>Learn more</layouts.NavButton>
           <layouts.NavButton>Source code</layouts.NavButton>
         </TitleWrapper>
@@ -64,14 +64,31 @@ const Title = styled('h1')`
     font-size: 25px;
     margin-top: 0px;
   }
+
+  @media (min-width: 800px) {
+    font-size: 5rem;
+  }
 `;
 
 const MenuIcon = styled(RiMenuLine)`
   cursor: pointer;
   margin: 0 15px;
+
+  @media (min-width: 800px) {
+    height: 5rem;
+  }
 `;
 
 const FoldMenuIcon = styled(RiMenuFoldLine)`
   cursor: pointer;
   margin: 0 15px;
+`;
+
+const Logo = styled('img')`
+  height: 40px;
+
+  @media (min-width: 800px) {
+    height: 5rem;
+    margin-right: 2rem;
+  }
 `;

@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 import { colors } from './colors';
 
-const NavFooter = styled('Nav')`
+const NavFooter = styled('nav')`
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: center;
   height: 60px;
-  background: white;
   width: inherit;
   background: ${colors.black};
   position: fixed;
   bottom: 0;
+
+  @media (min-width: 800px) {
+    height: 12%;
+  }
 `;
 
 const Nav = styled(NavFooter)`
-  border-top: none;
-  position: relative;
-  background: none;
+  position: absolute;
+  top: 0;
+  background: white;
 `;
 
 const NavButton = styled('div')`
@@ -41,6 +44,12 @@ const NavButton = styled('div')`
   @media (max-width: 300px) {
     width: 100%;
   }
+
+  @media (min-width: 800px) {
+    width: 20rem;
+    height: 3rem;
+    font-size: 1.3rem;
+  }
 `;
 
 const TopSection = styled('div')`
@@ -51,6 +60,10 @@ const TopSection = styled('div')`
   height: 180px;
   background: ${colors.black};
   width: inherit;
+
+  @media (min-width: 800px) {
+    height: 30vh;
+  }
 `;
 
 const TopSectionHeading = styled('h2')`
@@ -61,8 +74,8 @@ const TopSectionHeading = styled('h2')`
   line-height: 200%;
   margin: 0 20px;
 
-  @media (min-width: 900px) {
-    font-size: 2vw;
+  @media (min-width: 800px) {
+    font-size: 3vw;
   }
 `;
 
@@ -83,8 +96,10 @@ const TopSectionButton = styled('div')`
     background: ${colors.pink};
   }
 
-  @media (max-width: 300px) {
-    width: 70%;
+  @media (min-width: 800px) {
+    width: 50%;
+    height: 4rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -93,9 +108,13 @@ const MiddleSection = styled('div')`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 300px;
-  height: 250px;
+  width: 100%;
+  min-height: 250px;
   text-align: center;
+
+  @media (min-width: 800px) {
+    height: 40rem;
+  }
 `;
 
 const MiddleSectionHeading = styled('h2')`
@@ -105,6 +124,10 @@ const MiddleSectionHeading = styled('h2')`
   font-weight: 600;
   line-height: 200%;
   margin: 0 20px;
+
+  @media (min-width: 800px) {
+    font-size: 5rem;
+  }
 `;
 
 const MiddleSectionParagraph = styled('p')`
@@ -112,6 +135,30 @@ const MiddleSectionParagraph = styled('p')`
   margin: 0 20px;
   line-height: 120%;
   font-weight: 500;
+
+  @media (min-width: 800px) {
+    font-size: 2rem;
+    width: 40%;
+  }
+`;
+
+const MiddleSectionSliderWrapper = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 300px) {
+    max-width: 260px;
+  }
+
+  @media (min-width: 800px) {
+    max-width: 40%;
+  }
 `;
 
 const MiddleSectionButton = styled(TopSectionButton)`
@@ -121,6 +168,10 @@ const MiddleSectionButton = styled(TopSectionButton)`
 
   @media (max-width: 300px) {
     width: 70%;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 1.3rem;
   }
 `;
 
@@ -134,5 +185,6 @@ export const layouts = {
   MiddleSection,
   MiddleSectionHeading,
   MiddleSectionParagraph,
+  MiddleSectionSliderWrapper,
   MiddleSectionButton
 };
