@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import * as api from '../../../api';
@@ -13,11 +13,6 @@ export const Container = () => {
   const [matchingCandidates, setMatchingCandidates] = useState([]);
   const [renderCandidates, setRenderCandidates] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState();
-
-  const allJobsRef = useRef();
-  const jobRef = useRef();
-  const allCandidatesRef = useRef();
-  const candidateRef = useRef();
 
   useEffect(() => {
     api
@@ -56,7 +51,6 @@ export const Container = () => {
     if (selectedJob && renderCandidates && selectedCandidate) {
       return (
         <Candidate
-          ref={candidateRef}
           candidate={selectedCandidate}
           resetGoogleState={() => resetGoogleState()}
           setSelectedCandidate={() => setSelectedCandidate()}
@@ -67,7 +61,6 @@ export const Container = () => {
     if (selectedJob && renderCandidates) {
       return (
         <AllCandidates
-          ref={allCandidatesRef}
           selectedJob={selectedJob}
           candidates={matchingCandidates}
           setSelectedCandidate={(candidate) => setSelectedCandidate(candidate)}
@@ -79,7 +72,6 @@ export const Container = () => {
     if (selectedJob) {
       return (
         <Job
-          ref={jobRef}
           job={selectedJob}
           resetGoogleState={() => resetGoogleState()}
           setRenderCandidates={() => setRenderCandidates(true)}
@@ -88,7 +80,7 @@ export const Container = () => {
       );
     }
 
-    return <AllJobs ref={allJobsRef} jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
   };
 
   return (

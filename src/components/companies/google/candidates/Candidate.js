@@ -36,42 +36,42 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
       middleSection={{
         heading: 'Candidate Info',
         paragraph: `Scroll horizontally to see all candidate info.`,
-        children: (
+        sliderContent: (
           <>
-            <layouts.MiddleSectionSliderWrapper>
-              <CandidateSection>
-                <CandidateSectionHeading>Location</CandidateSectionHeading>
-                <p>{candidate.candidate_location}</p>
-              </CandidateSection>
-              {renderSkills().map((skills) => {
-                return (
-                  <CandidateSection>
-                    <CandidateSectionHeading>Skills</CandidateSectionHeading>
-                    {skills.map((skill) => (
-                      <p>{skill}</p>
-                    ))}
-                  </CandidateSection>
-                );
-              })}
-              <CandidateSection>
-                <CandidateSectionHeading>Current Job Title</CandidateSectionHeading>
-                <p>{candidate.candidate_job_title}</p>
-              </CandidateSection>
-              {renderPreviousJobs().map((jobs) => {
-                return (
-                  <CandidateSection>
-                    <CandidateSectionHeading>Previous Jobs</CandidateSectionHeading>
-                    {jobs.map((job) => (
-                      <p>{job}</p>
-                    ))}
-                  </CandidateSection>
-                );
-              })}
-            </layouts.MiddleSectionSliderWrapper>
-            <layouts.MiddleSectionButton onClick={() => resetGoogleState()}>
-              Return to jobs
-            </layouts.MiddleSectionButton>
+            <CandidateSection>
+              <CandidateSectionHeading>Location</CandidateSectionHeading>
+              <p>{candidate.candidate_location}</p>
+            </CandidateSection>
+            {renderSkills().map((skills) => {
+              return (
+                <CandidateSection>
+                  <CandidateSectionHeading>Skills</CandidateSectionHeading>
+                  {skills.map((skill) => (
+                    <p>{skill}</p>
+                  ))}
+                </CandidateSection>
+              );
+            })}
+            <CandidateSection>
+              <CandidateSectionHeading>Current Job Title</CandidateSectionHeading>
+              <p>{candidate.candidate_job_title}</p>
+            </CandidateSection>
+            {renderPreviousJobs().map((jobs) => {
+              return (
+                <CandidateSection>
+                  <CandidateSectionHeading>Previous Jobs</CandidateSectionHeading>
+                  {jobs.map((job) => (
+                    <p>{job}</p>
+                  ))}
+                </CandidateSection>
+              );
+            })}
           </>
+        ),
+        children: (
+          <layouts.MiddleSectionButton onClick={() => resetGoogleState()}>
+            Return to jobs
+          </layouts.MiddleSectionButton>
         )
       }}
     />

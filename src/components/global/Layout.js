@@ -52,10 +52,3 @@ const LayoutContainer = styled('div')`
   align-items: center;
   width: 100%;
 `;
-
-const TopSection = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;

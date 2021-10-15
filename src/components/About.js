@@ -28,8 +28,8 @@ export const About = () => {
               fit, you will see them listed as a match after selecting a job.
             </AboutSection>
             <AboutSection>
-              The server code is written in Node with Express and the user interface is written
-              in React. The project is hosted on Netlify and Heroku.
+              The server code is written in Node with Express and the user interface is written in
+              React. The project is hosted on Netlify and Heroku.
             </AboutSection>
             <AboutSection>
               New jobs and candidates are automatically scraped every day, once a day.
@@ -38,6 +38,11 @@ export const About = () => {
               Candidate contact information is not listed to protect their privacy.
             </AboutSection>
           </>
+        ),
+        children: (
+          <layouts.MiddleSectionButton onClick={() => history.push('/')}>
+            Return to homepage
+          </layouts.MiddleSectionButton>
         )
       }}
     />
