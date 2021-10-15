@@ -1,17 +1,23 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors } from '../../../styles';
 import * as api from '../../../api';
 import { AllJobs } from './jobs/AllJobs';
 import { Job } from './jobs/Job';
 import { AllCandidates } from './candidates/AllCandidates';
+import { Candidate } from './candidates/Candidate';
 
 export const Container = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState();
   const [matchingCandidates, setMatchingCandidates] = useState([]);
+  const [renderCandidates, setRenderCandidates] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState();
+
+  const allJobsRef = useRef();
+  const jobRef = useRef();
+  const allCandidatesRef = useRef();
+  const candidateRef = useRef();
 
   useEffect(() => {
     api
@@ -24,6 +30,14 @@ export const Container = () => {
       });
   }, []);
 
+  useEffect(() => {
+    selectedJob &&
+      api
+        .getCandidatesByJobId(selectedJob.id)
+        .then((res) => setMatchingCandidates(res.data))
+        .catch((err) => console.log({ err }));
+  }, [selectedJob]);
+
   const renderJob = (jobId) => {
     api
       .getJobById(jobId)
@@ -31,29 +45,50 @@ export const Container = () => {
       .catch((err) => console.log({ err }));
   };
 
-  const renderCandidates = (jobId) => {
-    api
-      .getCandidatesByJobId(jobId)
-      .then((res) => setMatchingCandidates(res.data))
-      .catch((err) => console.log({ err }));
+  const resetGoogleState = () => {
+    setSelectedJob();
+    setMatchingCandidates([]);
+    setRenderCandidates(false);
+    setSelectedCandidate();
   };
 
   const renderGoogleComponent = () => {
-    if (selectedJob && matchingCandidates.length) {
-      return <AllCandidates />;
+    if (selectedJob && renderCandidates && selectedCandidate) {
+      return (
+        <Candidate
+          ref={candidateRef}
+          candidate={selectedCandidate}
+          resetGoogleState={() => resetGoogleState()}
+          setSelectedCandidate={() => setSelectedCandidate()}
+        />
+      );
+    }
+
+    if (selectedJob && renderCandidates) {
+      return (
+        <AllCandidates
+          ref={allCandidatesRef}
+          selectedJob={selectedJob}
+          candidates={matchingCandidates}
+          setSelectedCandidate={(candidate) => setSelectedCandidate(candidate)}
+          resetGoogleState={() => resetGoogleState()}
+        />
+      );
     }
 
     if (selectedJob) {
       return (
         <Job
+          ref={jobRef}
           job={selectedJob}
-          setSelectedJob={() => setSelectedJob()}
-          setMatchingCandidates={(jobId) => renderCandidates(jobId)}
+          resetGoogleState={() => resetGoogleState()}
+          setRenderCandidates={() => setRenderCandidates(true)}
+          candidates={matchingCandidates}
         />
       );
     }
 
-    return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    return <AllJobs ref={allJobsRef} jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
   };
 
   return (

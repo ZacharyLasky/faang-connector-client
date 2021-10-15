@@ -14,12 +14,12 @@ export const Companies = () => {
       <Layout
         topSection={{
           heading: `What's FAANG?`,
-          button: 'Learn more',
-          buttonClick: '/companies'
+          button: 'Learn about FAANG',
+          customButton: () => window.open('https://en.wikipedia.org/wiki/Big_Tech', '_blank')
         }}
         middleSection={{
           heading: 'Select a FAANG company.',
-          paragraph: `Selecting a FAANG company will show you jobs sourced directly from the FAANG companies
+          paragraph: `Selecting a FAANG company will show you jobs sourced directly from the FAANG company
           website.`,
           children: (
             <ButtonContainer>

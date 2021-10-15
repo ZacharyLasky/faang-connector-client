@@ -1,80 +1,111 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../../../../styles';
+import { layouts } from '../../../../styles';
+import { Layout } from '../../../global';
 
-export const Candidate = ({ candidate }) => {
+export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate }) => {
+  console.log(candidate);
+
+  const renderPreviousJobs = () => {
+    let previousJobsArray = [];
+    for (let i = 0; i < candidate.candidate_previous_jobs.length; i++) {
+      previousJobsArray.push(candidate.candidate_previous_jobs.slice(i, i + 5));
+      i += 5;
+    }
+
+    return previousJobsArray;
+  };
+
+  const renderSkills = () => {
+    let skillsArray = [];
+    for (let i = 0; i < candidate.candidate_skills.length; i++) {
+      skillsArray.push(candidate.candidate_skills.slice(i, i + 5));
+      i += 5;
+    }
+
+    return skillsArray;
+  };
+
   return (
-    <Container>
-      <GoogleCandidateCard>
-        <GoogleCandidateName>{candidate.name}</GoogleCandidateName>
-        <GoogleCandidateButton>Button</GoogleCandidateButton>
-      </GoogleCandidateCard>
-    </Container>
+    <Layout
+      topSection={{
+        heading: candidate.candidate_name,
+        button: 'Return to candidates',
+        customButton: () => setSelectedCandidate()
+      }}
+      middleSection={{
+        heading: 'Candidate Info',
+        paragraph: `Scroll horizontally to see all candidate info`,
+        children: (
+          <>
+            <CandidateWrapper>
+              <CandidateSection>
+                <CandidateSectionHeading>Location</CandidateSectionHeading>
+                <p>{candidate.candidate_location}</p>
+              </CandidateSection>
+              {renderSkills().map((skills) => {
+                return (
+                  <CandidateSection>
+                    <CandidateSectionHeading>Skills</CandidateSectionHeading>
+                    {skills.map((skill) => (
+                      <p>{skill}</p>
+                    ))}
+                  </CandidateSection>
+                );
+              })}
+              <CandidateSection>
+                <CandidateSectionHeading>Current Job Title</CandidateSectionHeading>
+                <p>{candidate.candidate_job_title}</p>
+              </CandidateSection>
+              {renderPreviousJobs().map((jobs) => {
+                return (
+                  <CandidateSection>
+                    <CandidateSectionHeading>Previous Jobs</CandidateSectionHeading>
+                    {jobs.map((job) => (
+                      <p>{job}</p>
+                    ))}
+                  </CandidateSection>
+                );
+              })}
+            </CandidateWrapper>
+            <layouts.MiddleSectionButton onClick={() => resetGoogleState()}>
+              Return to jobs
+            </layouts.MiddleSectionButton>
+          </>
+        )
+      }}
+    />
   );
 };
 
-const Container = styled('div')`
+const CandidateWrapper = styled('div')`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: inherit;
-`;
-
-const GoogleCandidateCard = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 230px;
-  background: ${colors.black};
-  width: inherit;
-`;
-const GoogleCandidateName = styled('p')`
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  line-height: 200%;
-  font-weight: 100;
-
-  @media (min-width: 900px) {
-    font-size: 2vw;
+  justify-content: space-between;
+  max-width: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 
-const GoogleCandidateText = styled('p')`
-  color: white;
-  font-size: 12px;
-  text-align: center;
-  line-height: 200%;
-  font-weight: 100;
-  margin: 0 20px;
-  height: 40px;
-  overflow: scroll;
-
-  @media (min-width: 900px) {
-    font-size: 1vw;
-  }
-`;
-
-const GoogleCandidateButton = styled('div')`
+const CandidateSection = styled('div')`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  height: 50px;
+  min-height: 100px;
+  min-width: 200px;
   border-radius: 3px;
-  color: white;
-  font-weight: 600;
-  background: ${colors.mango};
-  cursor: pointer;
+  margin: 10px 5px;
   text-align: center;
-  margin-top: 15px;
-  width: 210px;
-  &:hover {
-    background: ${colors.pumpkin};
-  }
+  font-size: 14px;
+  padding: 0 15px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+`;
 
-  @media (max-width: 300px) {
-    width: 70%;
-  }
+const CandidateSectionHeading = styled('h3')`
+  font-weight: bold;
+  font-size: 16px;
 `;

@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import { layouts } from '../../../../styles';
 import { Layout } from '../../../global';
 
-export const Job = ({ job, setMatchingCandidates, setSelectedJob }) => {
-  console.log(job);
+export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) => {
   return (
     <Layout
       topSection={{
         heading: job.job_title,
         button: 'Return to jobs',
-        customButton: () => setSelectedJob()
+        customButton: () => resetGoogleState()
       }}
       middleSection={{
         heading: 'Job Qualifications',
@@ -18,13 +17,24 @@ export const Job = ({ job, setMatchingCandidates, setSelectedJob }) => {
         children: (
           <>
             <JobWrapper>
-              {job.job_qualifications.map((qualification, id) => (
-                <JobSection key={id}>{qualification}</JobSection>
+              {job.job_qualifications.map((qualification, i) => (
+                <>
+                  <JobSection key={i}>
+                    {qualification.slice(0, 170) + (qualification.length >= 170 ? '...' : '')}
+                  </JobSection>
+                  {qualification.length >= 170 && (
+                    <JobSection key={i}>{'...' + qualification.slice(170)}</JobSection>
+                  )}
+                </>
               ))}
             </JobWrapper>
-            <layouts.MiddleSectionButton onClick={() => setMatchingCandidates(job.id)}>
-              See matching candidates
-            </layouts.MiddleSectionButton>
+            {candidates.length ? (
+              <layouts.MiddleSectionButton onClick={() => setRenderCandidates(true)}>
+                {`See ${candidates.length} matching candidates`}
+              </layouts.MiddleSectionButton>
+            ) : (
+              <NoCandidateButton>{`0 matching candidates`}</NoCandidateButton>
+            )}
           </>
         )
       }}
@@ -47,7 +57,7 @@ const JobSection = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  min-height: 100px;
   min-width: 200px;
   border-radius: 3px;
   margin: 10px 5px;
@@ -56,4 +66,12 @@ const JobSection = styled('div')`
   padding: 0 15px;
   overflow: scroll;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+`;
+
+const NoCandidateButton = styled(layouts.MiddleSectionButton)`
+  background: grey;
+  cursor: not-allowed;
+  &:hover {
+    background: grey;
+  }
 `;

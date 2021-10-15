@@ -117,6 +117,7 @@ const MiddleSectionParagraph = styled('p')`
 const MiddleSectionButton = styled(TopSectionButton)`
   width: 300px;
   margin: 0 5px;
+  font-size: 15px;
 
   @media (max-width: 300px) {
     width: 70%;
