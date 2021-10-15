@@ -20,9 +20,7 @@ export const Container = () => {
       .then((res) => {
         setJobs(res.data);
       })
-      .catch((err) => {
-        console.log({ err });
-      });
+      .catch(() => alert('Whoops! An error has occurred... Please refresh this page.'));
   }, []);
 
   useEffect(() => {
@@ -30,14 +28,14 @@ export const Container = () => {
       api
         .getCandidatesByJobId(selectedJob.id)
         .then((res) => setMatchingCandidates(res.data))
-        .catch((err) => console.log({ err }));
+        .catch(() => alert('Whoops! An error has occurred... Please refresh this page.'));
   }, [selectedJob]);
 
   const renderJob = (jobId) => {
     api
       .getJobById(jobId)
       .then((res) => setSelectedJob(res.data[0]))
-      .catch((err) => console.log({ err }));
+      .catch(() => alert('Whoops! An error has occurred... Please refresh this page.'));
   };
 
   const resetGoogleState = () => {
