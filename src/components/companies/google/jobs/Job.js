@@ -17,21 +17,19 @@ export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) 
       }}
       middleSection={{
         heading: 'Job Qualifications',
-        paragraph: `Scroll horizontally to see all job info`,
+        paragraph: `Scroll horizontally to see all job info.`,
+        sliderContent: job.job_qualifications.map((qualification, i) => (
+          <>
+            <JobSection key={i}>
+              {qualification.slice(0, 170) + (qualification.length >= 170 ? '...' : '')}
+            </JobSection>
+            {qualification.length >= 170 && (
+              <JobSection key={i}>{'...' + qualification.slice(170)}</JobSection>
+            )}
+          </>
+        )),
         children: (
           <>
-            <layouts.MiddleSectionSliderWrapper>
-              {job.job_qualifications.map((qualification, i) => (
-                <>
-                  <JobSection key={i}>
-                    {qualification.slice(0, 170) + (qualification.length >= 170 ? '...' : '')}
-                  </JobSection>
-                  {qualification.length >= 170 && (
-                    <JobSection key={i}>{'...' + qualification.slice(170)}</JobSection>
-                  )}
-                </>
-              ))}
-            </layouts.MiddleSectionSliderWrapper>
             {candidates.length ? (
               <layouts.MiddleSectionButton onClick={() => setRenderCandidates(true)}>
                 {`See ${candidates.length} matching candidates`}

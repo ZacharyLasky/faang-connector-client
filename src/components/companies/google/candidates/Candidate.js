@@ -35,7 +35,7 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
       }}
       middleSection={{
         heading: 'Candidate Info',
-        paragraph: `Scroll horizontally to see all candidate info`,
+        paragraph: `Scroll horizontally to see all candidate info.`,
         children: (
           <>
             <layouts.MiddleSectionSliderWrapper>

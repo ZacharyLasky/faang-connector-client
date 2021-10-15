@@ -1,39 +1,67 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import { layouts } from '../styles';
+import { Layout } from './global';
 
 export const About = () => {
+  const history = useHistory();
+
   return (
-    <Container className="about-container" title="About Website">
-      <Title>Connect top tech jobs with top tech candidates!</Title>
-      <Directions>
-        Click the top "homepage" icon to return to the company selection from any page.
-      </Directions>
-      <Directions>
-        Click a company icon to see current tech job listings for that company.
-      </Directions>
-      <Directions>
-        Click a job result to see candidates that would be a good match for that job.
-      </Directions>
-    </Container>
+    <Layout
+      topSection={{
+        heading: 'Welcome to FAANG Connector',
+        button: 'Check out FAANG Companies',
+        buttonClick: '/companies'
+      }}
+      middleSection={{
+        heading: 'Google jobs are now viewable!',
+        paragraph: `Scroll horizontally to read about how this website works.`,
+        sliderContent: (
+          <>
+            <AboutSection>
+              This website uses Google's Puppeteer to scrape job postings and candidates from FAANG
+              company websites and SignalHire.
+            </AboutSection>
+            <AboutSection>
+              Candidates are compared to the job listings based on their skills. If they are a good
+              fit, you will see them listed as a match after selecting a job.
+            </AboutSection>
+            <AboutSection>
+              The server code is written in Node with Express and the user interface is written
+              in React. The project is hosted on Netlify and Heroku.
+            </AboutSection>
+            <AboutSection>
+              New jobs and candidates are automatically scraped every day, once a day.
+            </AboutSection>
+            <AboutSection>
+              Candidate contact information is not listed to protect their privacy.
+            </AboutSection>
+          </>
+        )
+      }}
+    />
   );
 };
 
-const Container = styled('div')`
+const AboutSection = styled('div')`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  border: 2px solid black;
+  min-height: 100px;
+  min-width: 200px;
   border-radius: 3px;
-  margin-bottom: 10px;
-  width: 270px;
-  height: 220px;
-`;
+  margin: 10px 5px;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 15px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
-const Title = styled('h4')`
-  margin: 5px;
-`;
-
-const Directions = styled('h5')`
-  margin: 5px;
+  @media (min-width: 800px) {
+    min-height: 10rem;
+    min-width: 15rem;
+    font-size: 1rem;
+  }
 `;
