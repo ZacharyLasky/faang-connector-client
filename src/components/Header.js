@@ -32,7 +32,12 @@ export const Header = () => {
         <TitleWrapper>
           <Logo src={walrusHead} alt="Walrus Head" />
           <layouts.NavButton onClick={() => history.push('/about')}>Learn more</layouts.NavButton>
-          <layouts.NavButton>Source code</layouts.NavButton>
+          <layouts.NavButton
+            onClick={() =>
+              window.open('https://github.com/ZacharyLasky/faang-connector-server', '_blank')
+            }>
+            Source code
+          </layouts.NavButton>
         </TitleWrapper>
         <FoldMenuIcon
           size="25px"

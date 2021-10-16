@@ -1,7 +1,7 @@
 # FAANG Connector Client
 Connect top tech jobs with top tech candidates!
 
-## Server code link: https://github.com/ZacharyLasky/faang-connector-server
+## Server source code: https://github.com/ZacharyLasky/faang-connector-server
 
 This website uses Google's Puppeteer to scrape job postings and candidates from FAANG company websites and SignalHire.
 
