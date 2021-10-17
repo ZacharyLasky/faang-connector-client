@@ -68,7 +68,7 @@ export const Container = () => {
       );
     }
 
-    if (selectedJob) {
+    if (selectedJob && matchingCandidates) {
       return (
         <Job
           job={selectedJob}

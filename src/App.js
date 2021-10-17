@@ -40,7 +40,7 @@ export default App;
 const AppContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-family: Arial, sans-serif;
   margin: 0 auto;

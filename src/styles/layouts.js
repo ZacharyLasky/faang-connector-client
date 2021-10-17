@@ -46,8 +46,8 @@ const NavButton = styled('div')`
   }
 
   @media (min-width: 800px) {
-    width: 20rem;
-    height: 3rem;
+    width: 15rem;
+    height: 2.5rem;
     font-size: 1.3rem;
   }
 `;
@@ -64,6 +64,12 @@ const TopSection = styled('div')`
   @media (min-width: 800px) {
     height: 30vh;
   }
+
+  @media (max-height: 400px) {
+    height: 60px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
 `;
 
 const TopSectionHeading = styled('h2')`
@@ -76,6 +82,10 @@ const TopSectionHeading = styled('h2')`
 
   @media (min-width: 800px) {
     font-size: 3vw;
+  }
+
+  @media (max-height: 400px) {
+    font-size: 16px;
   }
 `;
 
@@ -97,9 +107,15 @@ const TopSectionButton = styled('div')`
   }
 
   @media (min-width: 800px) {
-    width: 50%;
-    height: 4rem;
+    width: 40%;
+    height: 3rem;
     font-size: 1.5rem;
+  }
+
+  @media (max-height: 400px) {
+    width: 100px;
+    font-size: 8px;
+    height: 25px;
   }
 `;
 
@@ -113,7 +129,11 @@ const MiddleSection = styled('div')`
   text-align: center;
 
   @media (min-width: 800px) {
-    height: 40rem;
+    height: 30vh;
+  }
+
+  @media (max-height: 400px) {
+    min-height: 150px;
   }
 `;
 
@@ -126,7 +146,8 @@ const MiddleSectionHeading = styled('h2')`
   margin: 0 20px;
 
   @media (min-width: 800px) {
-    font-size: 5rem;
+    font-size: 1.6rem;
+    line-height: 100%;
   }
 `;
 
@@ -137,8 +158,9 @@ const MiddleSectionParagraph = styled('p')`
   font-weight: 500;
 
   @media (min-width: 800px) {
-    font-size: 2rem;
+    font-size: 1.2rem;
     width: 40%;
+    text-align: left;
   }
 `;
 

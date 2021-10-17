@@ -26,23 +26,27 @@ export const Layout = ({ topSection, middleSection }) => {
       )}
       {middleSection && (
         <layouts.MiddleSection>
-          <layouts.MiddleSectionHeading>{middleSection.heading}</layouts.MiddleSectionHeading>
-          {middleSection.paragraph && (
-            <layouts.MiddleSectionParagraph>
-              {middleSection.paragraph}
-            </layouts.MiddleSectionParagraph>
-          )}
+          <MiddleSectionTextWrapper>
+            <layouts.MiddleSectionHeading>{middleSection.heading}</layouts.MiddleSectionHeading>
+            {middleSection.paragraph && (
+              <layouts.MiddleSectionParagraph>
+                {middleSection.paragraph}
+              </layouts.MiddleSectionParagraph>
+            )}
+          </MiddleSectionTextWrapper>
           {middleSection.button && (
             <layouts.MiddleSectionButton onClick={() => history.push(middleSection.buttonClick)}>
               {middleSection.button}
             </layouts.MiddleSectionButton>
           )}
-          {middleSection.sliderContent && (
-            <layouts.MiddleSectionSliderWrapper>
-              {middleSection.sliderContent}
-            </layouts.MiddleSectionSliderWrapper>
-          )}
-          {middleSection.children && middleSection.children}
+          <MiddleSectionSliderAndChildrenWrapper>
+            {middleSection.sliderContent && (
+              <layouts.MiddleSectionSliderWrapper>
+                {middleSection.sliderContent}
+              </layouts.MiddleSectionSliderWrapper>
+            )}
+            {middleSection.children && middleSection.children}
+          </MiddleSectionSliderAndChildrenWrapper>
         </layouts.MiddleSection>
       )}
     </LayoutContainer>
@@ -52,6 +56,28 @@ export const Layout = ({ topSection, middleSection }) => {
 const LayoutContainer = styled('div')`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  height: 100vh;
+`;
+
+const MiddleSectionTextWrapper = styled('div')`
+  @media (min-width: 800px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    margin-top: -50px;
+  }
+`;
+
+const MiddleSectionSliderAndChildrenWrapper = styled('div')`
+  @media (max-height: 400px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
