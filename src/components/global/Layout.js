@@ -74,10 +74,13 @@ const MiddleSectionTextWrapper = styled('div')`
 `;
 
 const MiddleSectionSliderAndChildrenWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   @media (max-height: 400px) {
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
   }
 `;
