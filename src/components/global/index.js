@@ -1,2 +1,3 @@
 import { Layout } from './Layout';
-export { Layout };
+import { Loading } from './Loading';
+export { Layout, Loading };

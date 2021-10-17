@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import * as api from '../../../api';
+import { Loading } from '../../global';
 import { AllJobs } from './jobs/AllJobs';
 import { Job } from './jobs/Job';
 import { AllCandidates } from './candidates/AllCandidates';
@@ -78,7 +79,11 @@ export const Container = () => {
       );
     }
 
-    return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    if (jobs.length) {
+      return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    }
+
+    return <Loading />;
   };
 
   return (

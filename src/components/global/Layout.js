@@ -11,14 +11,17 @@ export const Layout = ({ topSection, middleSection }) => {
       {topSection && (
         <layouts.TopSection>
           <layouts.TopSectionHeading>{topSection.heading}</layouts.TopSectionHeading>
-          <layouts.TopSectionButton
-            onClick={() => {
-              topSection.buttonClick
-                ? history.push(topSection.buttonClick)
-                : topSection.customButton();
-            }}>
-            {topSection.button}
-          </layouts.TopSectionButton>
+          {topSection.button && (
+            <layouts.TopSectionButton
+              onClick={() => {
+                topSection.buttonClick
+                  ? history.push(topSection.buttonClick)
+                  : topSection.customButton();
+              }}>
+              {topSection.button}
+            </layouts.TopSectionButton>
+          )}
+          {topSection.children && topSection.children}
         </layouts.TopSection>
       )}
       {middleSection && (
