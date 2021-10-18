@@ -93,7 +93,11 @@ export const Container = () => {
       );
     }
 
-    return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    if (jobs.length) {
+      return <AllJobs jobs={jobs} setSelectedJob={(jobId) => renderJob(jobId)} />;
+    }
+
+    return <Loading />;
   };
 
   return (
