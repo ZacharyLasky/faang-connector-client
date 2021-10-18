@@ -16,9 +16,6 @@ function App() {
       <AppContainer className="app">
         <Header />
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route exact path="/companies">
             <Companies />
           </Route>
@@ -27,6 +24,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route exact path="*">
+            <Home />
           </Route>
         </Switch>
         <Footer />

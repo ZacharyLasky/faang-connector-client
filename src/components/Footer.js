@@ -1,17 +1,20 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { layouts } from '../styles';
 
 export const Footer = () => {
   const history = useHistory();
+  const location = useLocation();
 
   return (
     <layouts.NavFooter className="Footer-menu">
       <Title className="app-title">FAANG Connector</Title>
-      <layouts.NavButton style={{ marginRight: '15px' }} onClick={() => history.push('/')}>
-        Return to homepage
-      </layouts.NavButton>
+      {location.pathname !== '/' && (
+        <layouts.NavButton style={{ marginRight: '15px' }} onClick={() => history.push('/')}>
+          Return to homepage
+        </layouts.NavButton>
+      )}
     </layouts.NavFooter>
   );
 };
