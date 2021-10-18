@@ -20,7 +20,7 @@ export const Job = ({ job, candidates, setRenderCandidates, resetGoogleState }) 
               {qualification.slice(0, 170) + (qualification.length >= 170 ? '...' : '')}
             </JobSection>
             {qualification.length >= 170 && (
-              <JobSection key={i}>{'...' + qualification.slice(170)}</JobSection>
+              <JobSection>{'...' + qualification.slice(170)}</JobSection>
             )}
           </>
         )),
