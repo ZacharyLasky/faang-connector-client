@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import walrusHead from '../../assets/walrusHead.png';
 import { Layout } from './Layout';
 
-export const Loading = () => {
+export const Error = () => {
   return (
     <Layout
       topSection={{
         children: <Logo src={walrusHead} alt="Walrus Head" />
       }}
       middleSection={{
-        heading: 'Loading...'
+        heading: 'An error has occurred... Please refresh this page.'
       }}
     />
   );

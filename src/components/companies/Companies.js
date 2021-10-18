@@ -62,6 +62,10 @@ const ButtonContainer = styled('div')`
 `;
 
 const CompanyButton = styled(layouts.MiddleSectionButton)`
+  background: grey;
+  &:hover {
+    background: grey;
+  }
   width: 50px;
 `;
 
@@ -70,27 +74,15 @@ const FacebookButton = styled(CompanyButton)`
 `;
 
 const AppleButton = styled(CompanyButton)`
-  background: ${colors.mango};
   cursor: not-allowed;
-  &:hover {
-    background: ${colors.pumpkin};
-  }
 `;
 
 const AmazonButton = styled(CompanyButton)`
-  background: ${colors.opal};
   cursor: not-allowed;
-  &:hover {
-    background: ${colors.blueGreen};
-  }
 `;
 
 const NetflixButton = styled(CompanyButton)`
-  background: ${colors.lightPink};
   cursor: not-allowed;
-  &:hover {
-    background: ${colors.darkPink};
-  }
 `;
 
 const GoogleButton = styled(CompanyButton)`

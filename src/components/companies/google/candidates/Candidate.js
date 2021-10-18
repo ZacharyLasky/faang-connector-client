@@ -29,7 +29,7 @@ export const Candidate = ({ candidate, resetGoogleState, setSelectedCandidate })
       topSection={{
         heading: candidate.candidate_name,
         button: 'Return to candidates',
-        customButton: () => setSelectedCandidate()
+        customButton: () => setSelectedCandidate({})
       }}
       middleSection={{
         heading: 'Candidate Info',
