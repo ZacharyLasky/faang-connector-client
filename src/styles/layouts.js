@@ -179,7 +179,7 @@ const MiddleSectionSliderWrapper = styled('div')`
   }
 
   @media (min-width: 800px) {
-    max-width: 40%;
+    max-width: 50vw;
   }
 `;
 
@@ -193,7 +193,7 @@ const MiddleSectionButton = styled(TopSectionButton)`
   }
 
   @media (min-width: 800px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 `;
 
